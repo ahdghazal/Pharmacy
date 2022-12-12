@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" style="-fx-background-color: #d8e9fb;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy.prodcont">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" style="-fx-background-color: #d8e9fb;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy.prodcont">
    <children>
       <Label prefHeight="34.0" prefWidth="600.0" style="-fx-background-color: fba940; -fx-text-fill: #416077;" text=" Products" textFill="WHITE">
          <font>
@@ -18,90 +18,90 @@
          </font>
       </Label>
       <TabPane layoutY="34.0" prefHeight="386.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Drugs">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <tabs>
+            <Tab text="Drugs">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="501.0" layoutY="10.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Add" />
-                        <Button layoutX="501.0" layoutY="74.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
+                        <Button fx:id="adddrug" layoutX="501.0" layoutY="10.0" mnemonicParsing="false" onAction="#addDrug" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Add" />
+                        <Button fx:id="updatedrug" layoutX="501.0" layoutY="74.0" mnemonicParsing="false" onAction="#EditDrug" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
                         <Label layoutX="10.0" layoutY="6.0" style="-fx-text-fill: #416077;" text="ID" />
-                        <TextField layoutX="8.0" layoutY="22.0" prefHeight="26.0" prefWidth="78.0" />
-                        <TableView layoutY="114.0" prefHeight="241.0" prefWidth="600.0">
+                        <TextField fx:id="drugidField" layoutX="8.0" layoutY="22.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TableView fx:id="table_drug" layoutY="114.0" prefHeight="241.0" prefWidth="600.0">
                            <columns>
-                              <TableColumn prefWidth="66.6" text="ID" />
-                              <TableColumn prefWidth="66.6" text="Name" />
-                              <TableColumn prefWidth="66.6" text="Sci Name" />
-                              <TableColumn prefWidth="66.6" text="Manu Name" />
-                              <TableColumn prefWidth="66.6" text="Exp Date" />
-                              <TableColumn prefWidth="66.6" text="Form" />
-                              <TableColumn prefWidth="66.6" text="Category" />
-                              <TableColumn prefWidth="66.6" text="Amount" />
-                              <TableColumn prefWidth="66.6" text="Price" />
+                              <TableColumn fx:id="col_drugid" prefWidth="66.6" text="ID" />
+                              <TableColumn fx:id="col_drugname" prefWidth="66.6" text="Name" />
+                              <TableColumn fx:id="col_drugsci" prefWidth="66.6" text="Sci Name" />
+                              <TableColumn fx:id="col_drug_manufid" prefWidth="66.6" text="Manu ID" />
+                              <TableColumn fx:id="col_drugexpdate" prefWidth="66.6" text="Exp Date" />
+                              <TableColumn fx:id="col_drugform" prefWidth="66.6" text="Form" />
+                              <TableColumn fx:id="col_drugcat" prefWidth="66.6" text="Category" />
+                              <TableColumn fx:id="col_drugamount" prefWidth="66.6" text="Amount" />
+                              <TableColumn fx:id="col_drugprice" prefWidth="66.6" text="Price" />
                            </columns>
                         </TableView>
-                        <Button layoutX="501.0" layoutY="42.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Delete" />
+                        <Button fx:id="deletedrug" layoutX="501.0" layoutY="42.0" mnemonicParsing="false" onAction="#deleteDrug" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Delete" />
                         <Label layoutX="97.0" layoutY="6.0" style="-fx-text-fill: #416077;" text="Name" />
-                        <TextField layoutX="95.0" layoutY="22.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TextField fx:id="drugnameField" layoutX="95.0" layoutY="22.0" prefHeight="26.0" prefWidth="78.0" />
                         <Label layoutX="184.0" layoutY="6.0" style="-fx-text-fill: #416077;" text="Sci Name" />
-                        <TextField layoutX="182.0" layoutY="22.0" prefHeight="26.0" prefWidth="78.0" />
-                        <Label layoutX="271.0" layoutY="6.0" style="-fx-text-fill: #416077;" text="Manu Name" />
-                        <TextField layoutX="269.0" layoutY="22.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TextField fx:id="drugseiTextField" layoutX="182.0" layoutY="22.0" prefHeight="26.0" prefWidth="78.0" />
+                        <Label layoutX="271.0" layoutY="6.0" style="-fx-text-fill: #416077;" text="Manu ID" />
+                        <TextField fx:id="drug_manufidTextField" layoutX="269.0" layoutY="22.0" prefHeight="26.0" prefWidth="78.0" />
                         <Label layoutX="9.0" layoutY="52.0" style="-fx-text-fill: #416077;" text="Exp Date" />
-                        <TextField layoutX="7.0" layoutY="68.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TextField fx:id="drugexpdateTextField" layoutX="7.0" layoutY="68.0" prefHeight="26.0" prefWidth="78.0" />
                         <Label layoutX="96.0" layoutY="52.0" style="-fx-text-fill: #416077;" text="Form" />
-                        <TextField layoutX="94.0" layoutY="68.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TextField fx:id="drugformTextField" layoutX="94.0" layoutY="68.0" prefHeight="26.0" prefWidth="78.0" />
                         <Label layoutX="183.0" layoutY="52.0" style="-fx-text-fill: #416077;" text="Category" />
-                        <TextField layoutX="181.0" layoutY="68.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TextField fx:id="drugcatTextField" layoutX="181.0" layoutY="68.0" prefHeight="26.0" prefWidth="78.0" />
                         <Label layoutX="270.0" layoutY="52.0" style="-fx-text-fill: #416077;" text="Amount" />
-                        <TextField layoutX="268.0" layoutY="68.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TextField fx:id="drugamountTextField" layoutX="268.0" layoutY="68.0" prefHeight="26.0" prefWidth="78.0" />
                         <Label layoutX="358.0" layoutY="5.0" style="-fx-text-fill: #416077;" text="Price" />
-                        <TextField layoutX="356.0" layoutY="21.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TextField fx:id="drugpriceTextField" layoutX="356.0" layoutY="21.0" prefHeight="26.0" prefWidth="78.0" />
                      </children>
                   </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Commercial Products">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               </content>
+            </Tab>
+            <Tab text="Commercial Products">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Button layoutX="501.0" layoutY="10.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Add" />
-                              <Button layoutX="501.0" layoutY="74.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
+                              <Button fx:id="addcomm" layoutX="501.0" layoutY="10.0" mnemonicParsing="false" onAction="#addcommerical" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Add" />
+                              <Button fx:id="updatecom" layoutX="501.0" layoutY="74.0" mnemonicParsing="false" onAction="#Editcommerical" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
                               <Label layoutX="10.0" layoutY="9.0" style="-fx-text-fill: #416077;" text="ID" />
-                              <TextField layoutX="8.0" layoutY="25.0" prefHeight="26.0" prefWidth="78.0" />
-                              <TableView layoutY="114.0" prefHeight="241.0" prefWidth="600.0">
+                              <TextField fx:id="comidTextField" layoutX="8.0" layoutY="25.0" prefHeight="26.0" prefWidth="78.0" />
+                              <TableView fx:id="table_com" layoutY="114.0" prefHeight="241.0" prefWidth="600.0">
                                  <columns>
-                                    <TableColumn prefWidth="85.7" text="ID" />
-                                    <TableColumn prefWidth="85.7" text="Name" />
-                                    <TableColumn prefWidth="85.7" text="Manu Name" />
-                                    <TableColumn prefWidth="85.7" text="Exp Date" />
-                                    <TableColumn prefWidth="85.7" text="Type" />
-                                    <TableColumn prefWidth="85.7" text="Amount" />
-                                    <TableColumn prefWidth="85.7" text="Price" />
+                                    <TableColumn fx:id="col_comid" prefWidth="85.7" text="ID" />
+                                    <TableColumn fx:id="col_comname" prefWidth="85.7" text="Name" />
+                                    <TableColumn fx:id="col_com_manufId" prefWidth="85.7" text="manu ID" />
+                                    <TableColumn fx:id="col_comexpdate" prefWidth="85.7" text="Exp Date" />
+                                    <TableColumn fx:id="col_comtype" prefWidth="85.7" text="Type" />
+                                    <TableColumn fx:id="col_comamount" prefWidth="85.7" text="Amount" />
+                                    <TableColumn fx:id="col_comprice" prefWidth="85.7" text="Price" />
                                  </columns>
                               </TableView>
-                              <Button layoutX="501.0" layoutY="42.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Delete" />
+                              <Button fx:id="deletecom" layoutX="501.0" layoutY="42.0" mnemonicParsing="false" onAction="#deletecommerical" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Delete" />
                               <Label layoutX="123.0" layoutY="9.0" style="-fx-text-fill: #416077;" text="Name" />
-                              <TextField layoutX="120.0" layoutY="24.0" prefHeight="26.0" prefWidth="78.0" />
+                              <TextField fx:id="comnameTextField" layoutX="120.0" layoutY="24.0" prefHeight="26.0" prefWidth="78.0" />
                               <Label layoutX="9.0" layoutY="55.0" style="-fx-text-fill: #416077;" text="Exp Date" />
-                              <TextField layoutX="7.0" layoutY="72.0" prefHeight="26.0" prefWidth="78.0" />
+                              <TextField fx:id="comexpdateTextField" layoutX="7.0" layoutY="72.0" prefHeight="26.0" prefWidth="78.0" />
                               <Label layoutX="121.0" layoutY="56.0" style="-fx-text-fill: #416077;" text="Amount" />
-                              <TextField layoutX="120.0" layoutY="72.0" prefHeight="26.0" prefWidth="78.0" />
+                              <TextField fx:id="comamountTextField" layoutX="120.0" layoutY="72.0" prefHeight="26.0" prefWidth="78.0" />
                            </children>
                         </AnchorPane>
-                        <Label layoutX="230.0" layoutY="8.0" style="-fx-text-fill: #416077;" text="Manu Name" />
-                        <TextField layoutX="230.0" layoutY="25.0" prefHeight="26.0" prefWidth="78.0" />
-                        <TextField layoutX="230.0" layoutY="72.0" prefHeight="26.0" prefWidth="78.0" />
+                        <Label layoutX="230.0" layoutY="8.0" style="-fx-text-fill: #416077;" text="Manu ID" />
+                        <TextField fx:id="com_manufidTextField" layoutX="230.0" layoutY="25.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TextField fx:id="compriceTextField" layoutX="230.0" layoutY="72.0" prefHeight="26.0" prefWidth="78.0" />
                         <Label layoutX="230.0" layoutY="56.0" style="-fx-text-fill: #416077;" text="Price" />
                         <Label layoutX="330.0" layoutY="7.0" style="-fx-text-fill: #416077;" text="Type" />
-                        <TextField layoutX="330.0" layoutY="24.0" prefHeight="26.0" prefWidth="78.0" />
+                        <TextField fx:id="comtypeTextField" layoutX="330.0" layoutY="24.0" prefHeight="26.0" prefWidth="78.0" />
                      </children>
                   </AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
+               </content>
+            </Tab>
+         </tabs>
       </TabPane>
       <Button layoutX="462.0" layoutY="2.0" mnemonicParsing="false" onAction="#SendToHomepage" prefHeight="28.0" prefWidth="136.0" style="-fx-background-color: fba940; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 15;" text="back To Homepage" />
    </children>

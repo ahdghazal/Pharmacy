@@ -10,46 +10,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy.ordercont">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy.ordercont">
    <children>
       <Label prefHeight="34.0" prefWidth="600.0" style="-fx-background-color: fba940; -fx-text-fill: #416077;" text="  Order" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="171.0" layoutY="119.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Add" />
-      <Button layoutX="241.0" layoutY="119.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
-      <TextField layoutX="25.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
-      <TextField layoutX="139.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
-      <TextField layoutX="256.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
+      <Button fx:id="add" layoutX="171.0" layoutY="119.0" mnemonicParsing="false" onAction="#addorder" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Add" />
+      <Button fx:id="update" layoutX="241.0" layoutY="119.0" mnemonicParsing="false" onAction="#updateorder" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
+      <TextField fx:id="orderidTextField" layoutX="25.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
+      <TextField fx:id="order_custidTextField" layoutX="139.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
+      <TextField fx:id="order_empidTextField" layoutX="256.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
       <Label layoutX="26.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="ID" />
       <Label layoutX="139.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="CustomerID" />
       <Label layoutX="256.0" layoutY="59.0" style="-fx-text-fill: #416077;" text="EmployeeID" />
-      <TextField layoutX="481.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
+      <TextField fx:id="ordertotalpriceTextField" layoutX="481.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
       <Label layoutX="482.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="Total" />
-      <TextField layoutX="372.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
-      <Label layoutX="372.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="Email" />
-      <TableView layoutY="179.0" prefHeight="241.0" prefWidth="355.0">
+      <TextField fx:id="orderdateTextField" layoutX="372.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
+      <Label layoutX="372.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="Date" />
+      <TableView fx:id="ordertbl" layoutY="179.0" prefHeight="241.0" prefWidth="355.0">
          <columns>
-            <TableColumn prefWidth="71.0" text="OrderID" />
-            <TableColumn prefWidth="71.0" text="CustomerID" />
-            <TableColumn prefWidth="71.0" text="EmployeeID" />
-            <TableColumn prefWidth="71.0" text="Date" />
-            <TableColumn prefWidth="71.0" text="Total" />
+            <TableColumn fx:id="orderid" prefWidth="71.0" text="OrderID" />
+            <TableColumn fx:id="order_custid" prefWidth="71.0" text="CustomerID" />
+            <TableColumn fx:id="order_empid" prefWidth="71.0" text="EmployeeID" />
+            <TableColumn fx:id="orderdate" prefWidth="71.0" text="Date" />
+            <TableColumn fx:id="ordertotalprice" prefWidth="71.0" text="Total" />
          </columns>
       </TableView>
       <Button layoutX="456.0" layoutY="3.0" mnemonicParsing="false" onAction="#SendToHomepage" prefHeight="28.0" prefWidth="136.0" style="-fx-background-color: fba940; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 15;" text="back To Homepage" />
-      <Button layoutX="311.0" layoutY="119.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Delete" />
+      <Button fx:id="delete" layoutX="311.0" layoutY="119.0" mnemonicParsing="false" onAction="#deleteorder" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Delete" />
       <AnchorPane layoutX="382.0" layoutY="214.0" prefHeight="53.0" prefWidth="58.0" />
-      <AnchorPane layoutX="385.0" layoutY="251.0" prefHeight="62.0" prefWidth="66.0">
-         <children>
-            <ImageView fitHeight="70.0" fitWidth="66.0" layoutX="-14.0" layoutY="34.0">
-               <image>
-                  <Image url="@../../../date.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
       <AnchorPane layoutX="385.0" layoutY="328.0" prefHeight="62.0" prefWidth="66.0">
          <children>
             <ImageView fitHeight="42.0" fitWidth="43.0" layoutX="-5.0" layoutY="25.0">
@@ -59,7 +50,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label layoutX="420.0" layoutY="179.0" style="-fx-text-fill: WHITE; -fx-background-color: #416077;" text="FINAL BILL:">
+      <Label fx:id="finalbills" layoutX="420.0" layoutY="179.0" style="-fx-text-fill: WHITE; -fx-background-color: #416077;" text="FINAL BILL:">
          <font>
             <Font size="24.0" />
          </font>
@@ -84,6 +75,11 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="381.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Print Bill" />
+      <Button fx:id="print" layoutX="381.0" layoutY="119.0" mnemonicParsing="false" onAction="#printbills" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Print Bill" />
+      <ImageView fitHeight="79.0" fitWidth="66.0" layoutX="371.0" layoutY="278.0">
+         <image>
+            <Image url="@../../../date.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

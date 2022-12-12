@@ -1,5 +1,4 @@
 package com.example.pharmacy;
-import com.mysql.cj.xdevapi.UpdateType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,19 +12,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import javax.swing.*;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 
-public class manucont {
+
+public class manucont  implements Initializable{
 
     @FXML
     private Button add;
@@ -72,8 +66,10 @@ public class manucont {
 
     ObservableList<manuftbl> listm;
     int index = -1;
-    Connection conn = null;
+    Connection conn =null;
+
     ResultSet rs = null;
+    Statement st = null;
     PreparedStatement pst = null;
 
 
@@ -101,13 +97,54 @@ public class manucont {
         manufemailTextField.setText(col_manufemail.getCellData(index).toString());
 
     }
-    public void Updatemanufacture() {
+
+    @FXML
+    public void Edit(ActionEvent event) {
+
+
+        try {
+            conn = jdbcex.getConnection();
+            String v01 = manufidTextField.getText();
+            int v1= Integer.parseInt(v01);
+            String v2 = manufnameTextField.getText();
+            String v3 = manufaddressTextField.getText();
+            String v4 = manufemailTextField.getText();
+            String v5 = manufphoneTextField.getText();
+            try {
+                String sql = "UPDATE manufacturer SET manufacturer_ID="+v1+",FNAME='"+v2+"',address='"+v3+"',EMAIL='"+v4+"',PHONE='"+v5+"' WHERE manufacturer_ID="+v1;
+
+
+                st = conn.createStatement();
+                st.executeUpdate(sql);
+                table_manuf.refresh();
+                Updatemanu();
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("manufacture.fxml"));
+                Scene scene2 = new Scene(fxmlLoader.load(), 600, 420);
+                Stage stage2 = new Stage();
+                stage2.setScene(scene2);
+                stage2.show();
+                Stage stage = (Stage) update.getScene().getWindow();
+                stage.close();
+            }
+            catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void Updatemanu() {
 
         col_manufid.setCellValueFactory(new PropertyValueFactory<manuftbl, Integer>("manufid"));
         col_manufname.setCellValueFactory(new PropertyValueFactory<manuftbl, String>("manufname"));
-        col_manufaddress.setCellValueFactory(new PropertyValueFactory<manuftbl, String>("manufaddress"));
-        col_manufemail.setCellValueFactory(new PropertyValueFactory<manuftbl, String>("manufemail"));
         col_manufphone.setCellValueFactory(new PropertyValueFactory<manuftbl, String>("manufphone"));
+        col_manufemail.setCellValueFactory(new PropertyValueFactory<manuftbl, String>("manufemail"));
+        col_manufaddress.setCellValueFactory(new PropertyValueFactory<manuftbl, String>("manufaddress"));
         listm = jdbcex.getmanusers();
         table_manuf.setItems(listm);
 
@@ -118,19 +155,20 @@ public class manucont {
         conn = jdbcex.getConnection();
         String id = manufidTextField.getText();
         System.out.println(id + "");
-        String sql1 = "DELETE FROM manufacturer WHERE manufacturer_id='" + id + "'";
+        String sql1 = "DELETE FROM ahd.manufacturer WHERE manufacturer_id=" + id ;
         try {
-            pst = conn.prepareStatement(sql1);
+            st = conn.createStatement();
+            st.executeUpdate(sql1);
 
-            pst.execute();
             table_manuf.refresh();
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Manufacturer.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Manufacture.fxml"));
             Scene scene2 = new Scene(fxmlLoader.load(), 600, 420);
             Stage stage2 = new Stage();
             stage2.setScene(scene2);
             stage2.show();
             Stage stage = (Stage) delete.getScene().getWindow();
             stage.close();
+            //updateEmployee();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,7 +180,7 @@ public class manucont {
 
     @FXML
     void addManufacturer(ActionEvent event) throws SQLException {
-        String manuID = manufidTextField.getText();
+        String manuId = manufidTextField.getText();
         conn = jdbcex.getConnection();
 
         PreparedStatement st = null;
@@ -152,7 +190,7 @@ public class manucont {
             throw new RuntimeException(e);
         }
         try {
-            st.setString(1, manuID);
+            st.setString(1, manuId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -175,8 +213,9 @@ public class manucont {
                     pst.setString(5, manufphoneTextField.getText());
 
                     pst.execute();
-                    Updatemanufacture();
+                    Updatemanu();
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             } else {
 
@@ -191,9 +230,16 @@ public class manucont {
     }
 
 
-    @FXML
-    void updateManufacturer(ActionEvent event) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Updatemanu();
+
+
+        this.table_manuf.setOnMouseClicked((e) -> {
+            getSelected();
+        });
+
+
 
     }
-
 }
