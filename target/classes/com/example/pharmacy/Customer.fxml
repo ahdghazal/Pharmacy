@@ -16,7 +16,7 @@
          </font>
       </Label>
       <Button fx:id="add" layoutX="196.0" layoutY="119.0" mnemonicParsing="false" onAction="#addcust" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Add" />
-      <Button fx:id="update" layoutX="271.0" layoutY="119.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
+      <Button fx:id="update" layoutX="271.0" layoutY="119.0" mnemonicParsing="false" onAction="#UpdateCust" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
       <TextField fx:id="custidTextField" layoutX="79.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
       <TextField fx:id="custnameTextField" layoutX="197.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
       <TextField fx:id="custphoneTextField" layoutX="314.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
@@ -25,7 +25,7 @@
       <Label layoutX="314.0" layoutY="59.0" style="-fx-text-fill: #416077;" text="Phone" />
       <TextField fx:id="custemailTextField" layoutX="426.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
       <Label layoutX="426.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="Email" />
-      <TableView fx:id="table_cust" layoutX="63.0" layoutY="179.0" onMouseClicked="#getSelected" prefHeight="241.0" prefWidth="481.0">
+      <TableView fx:id="table_cust" layoutX="61.0" layoutY="179.0" onMouseClicked="#getSelected" prefHeight="241.0" prefWidth="481.0">
          <columns>
             <TableColumn fx:id="custid" prefWidth="120.0" text="ID" />
             <TableColumn fx:id="custname" prefWidth="120.0" text="Name" />

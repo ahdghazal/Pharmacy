@@ -1,4 +1,5 @@
 package com.example.pharmacy;
+
 import com.mysql.cj.xdevapi.UpdateType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,10 +19,7 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 
@@ -62,8 +60,10 @@ public class Custcont implements Initializable {
 
     ObservableList<Custtbl> listm;
     int index = -1;
-    Connection conn = null;
+    Connection conn =null;
+
     ResultSet rs = null;
+    Statement st = null;
     PreparedStatement pst = null;
 
 
@@ -89,6 +89,46 @@ public class Custcont implements Initializable {
         custphoneTextField.setText(custphone.getCellData(index).toString());
         custemailTextField.setText(custemail.getCellData(index).toString());
 
+    }
+
+    @FXML
+    public void UpdateCust(ActionEvent event) {
+
+
+        try {
+            conn = jdbcex.getConnection();
+            String v01 = custidTextField.getText();
+            int v1= Integer.parseInt(v01);
+            String v2 = custnameTextField.getText();
+            String v3 = custphoneTextField.getText();
+            String v4 = custemailTextField.getText();
+            try {
+                String sql = "UPDATE custemer SET custemer_ID="+v1+",FNAME='"+v2+"',MOPILE_PHONE='"+v3+"',EMAIL='"+v4+"' WHERE custemer_ID="+v1;
+
+
+                st = conn.createStatement();
+                st.executeUpdate(sql);
+                table_cust.refresh();
+                Updatetable();
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Customer.fxml"));
+                Scene scene2 = new Scene(fxmlLoader.load(), 600, 420);
+                Stage stage2 = new Stage();
+                stage2.setScene(scene2);
+                stage2.show();
+                Stage stage = (Stage) update.getScene().getWindow();
+                stage.close();
+            }
+            catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -166,9 +206,9 @@ public class Custcont implements Initializable {
                     pst.setString(4, custemailTextField.getText());
 
                     pst.execute();
-                    //JOptionPane.showMessageDialog(null," customer has been added");
                     Updatetable();
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             } else {
 
@@ -194,5 +234,4 @@ public class Custcont implements Initializable {
 
 
 
-}}
-
+    }}
