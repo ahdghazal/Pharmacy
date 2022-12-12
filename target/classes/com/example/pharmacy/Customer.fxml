@@ -15,28 +15,25 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="196.0" layoutY="119.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Add" />
-      <Button layoutX="271.0" layoutY="119.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
-      <TextField layoutX="25.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
-      <TextField layoutX="143.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
-      <TextField layoutX="260.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
-      <Label layoutX="26.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="ID" />
-      <Label layoutX="143.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="Name" />
-      <Label layoutX="260.0" layoutY="59.0" style="-fx-text-fill: #416077;" text="Phone" />
-      <TextField layoutX="481.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
-      <Label layoutX="482.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="Order_ID" />
-      <TextField layoutX="372.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
-      <Label layoutX="372.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="Email" />
-      <TableView fx:id="custtbl" layoutY="179.0" prefHeight="241.0" prefWidth="600.0">
+      <Button fx:id="add" layoutX="196.0" layoutY="119.0" mnemonicParsing="false" onAction="#addcust" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Add" />
+      <Button fx:id="update" layoutX="271.0" layoutY="119.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Update" />
+      <TextField fx:id="custidTextField" layoutX="79.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
+      <TextField fx:id="custnameTextField" layoutX="197.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
+      <TextField fx:id="custphoneTextField" layoutX="314.0" layoutY="75.0" prefHeight="26.0" prefWidth="94.0" />
+      <Label layoutX="80.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="ID" />
+      <Label layoutX="197.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="Name" />
+      <Label layoutX="314.0" layoutY="59.0" style="-fx-text-fill: #416077;" text="Phone" />
+      <TextField fx:id="custemailTextField" layoutX="426.0" layoutY="74.0" prefHeight="26.0" prefWidth="94.0" />
+      <Label layoutX="426.0" layoutY="58.0" style="-fx-text-fill: #416077;" text="Email" />
+      <TableView fx:id="table_cust" layoutX="63.0" layoutY="179.0" onMouseClicked="#getSelected" prefHeight="241.0" prefWidth="481.0">
          <columns>
             <TableColumn fx:id="custid" prefWidth="120.0" text="ID" />
             <TableColumn fx:id="custname" prefWidth="120.0" text="Name" />
             <TableColumn fx:id="custphone" prefWidth="120.0" text="Phone" />
             <TableColumn fx:id="custemail" prefWidth="120.0" text="Email" />
-            <TableColumn fx:id="orderid" prefWidth="120.0" text="Order_ID" />
          </columns>
       </TableView>
       <Button layoutX="456.0" layoutY="3.0" mnemonicParsing="false" onAction="#SendToHomepage" prefHeight="28.0" prefWidth="136.0" style="-fx-background-color: fba940; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 15;" text="back To Homepage" />
-      <Button layoutX="347.0" layoutY="119.0" mnemonicParsing="false" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Delete" />
+      <Button fx:id="delete" layoutX="347.0" layoutY="119.0" mnemonicParsing="false" onAction="#deleteCust" prefWidth="58.0" style="-fx-background-color: #416077; -fx-text-fill: white;" text="Delete" />
    </children>
 </AnchorPane>

@@ -148,6 +148,27 @@ public class homecont implements Initializable {
         String id=user.USERID;
         Connection homecon = jdbcex.getConnection();
         try {
+
+            Statement stmt0 = homecon.createStatement();
+            String query0 = "select ismanager from AHD.EMPLOYEE where person_id="+id;
+            ResultSet rs0 = stmt0.executeQuery(query0);
+            rs0.next();
+            int mg = rs0.getInt(1);
+
+            if(mg==0){
+                sigbtn.setVisible(false);
+            }
+            else
+                sigbtn.setVisible(true);
+            Statement stmt00 = homecon.createStatement();
+            String query00 = "select fname from AHD.EMPLOYEE where person_id="+id;
+            ResultSet rs00 = stmt00.executeQuery(query00);
+            rs00.next();
+            String wlc = rs00.getString(1);
+            wlcst.setText("Hi "+wlc+"!, Have a nice shift!♡");
+
+
+
             Statement stmt1 = homecon.createStatement();
             String query1 = "select count(*) from AHD.EMPLOYEE";
             ResultSet rs1 = stmt1.executeQuery(query1);

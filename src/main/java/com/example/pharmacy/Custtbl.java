@@ -2,14 +2,18 @@ package com.example.pharmacy;
 public class Custtbl {
 
     private int custid;
-    private int orderid;
-    private String custname,custphone,custemail;
+
+    private String custname;
+
+
+    private String custphone;
+    private String custemail;
 
 
 
-    public Custtbl(int custid, String custname, String custphone, String custemail, int orderid) {
+    public Custtbl(int custid, String custname, String custphone, String custemail) {
         this.custid = custid;
-        this.orderid = orderid;
+
         this.custname = custname;
         this.custphone = custphone;
         this.custemail = custemail;
@@ -20,10 +24,8 @@ public class Custtbl {
         return custid;
     }
 
-    public int getOrderid() {
 
-        return orderid;
-    }
+
 
     public String getCustname() {
 
@@ -38,6 +40,21 @@ public class Custtbl {
     public String getCustemail() {
 
         return custemail;
+    }
+    public void setCustid(int custid) {
+        this.custid = custid;
+    }
+
+    public void setCustname(String custname) {
+        this.custname = custname;
+    }
+
+    public void setCustphone(String custphone) {
+        this.custphone = custphone;
+    }
+
+    public void setCustemail(String custemail) {
+        this.custemail = custemail;
     }
 
 

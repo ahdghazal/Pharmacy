@@ -99,9 +99,7 @@ public class signcont implements Initializable {
                 stage.close();
 
             }
-            catch (SQLIntegrityConstraintViolationException s){
-                JOptionPane.showInputDialog("USERID ALREADY EXISTS!");
-            }
+
             catch(Exception e){
                 e.printStackTrace();
             }

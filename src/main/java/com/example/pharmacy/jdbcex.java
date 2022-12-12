@@ -45,15 +45,31 @@ public class jdbcex {
         }
         return list;
     }
-    public static ObservableList<Custtbl>  getustusers()
+    public static ObservableList<Custtbl>  getcustusers()
     {
         Connection conn=getConnection();
         ObservableList<Custtbl> list= FXCollections.observableArrayList();
         try{
-            PreparedStatement ps=conn.prepareStatement("SELECT * FROM C##dbmanar.custemer");
+            PreparedStatement ps=conn.prepareStatement("SELECT * FROM ahd.custemer");
             ResultSet rs=ps.executeQuery();
             while (rs.next()){
-                list.add(new Custtbl(rs.getInt("custemer_id"),rs.getString("FNAME"),rs.getString("MOPILE_PHONE"),rs.getString("EMAIL"),rs.getInt("order_id")));
+                list.add(new Custtbl(rs.getInt("custemer_id"),rs.getString("FNAME"),rs.getString("MOPILE_PHONE"),rs.getString("EMAIL")));
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    public static ObservableList<manuftbl>  getmanusers()
+    {
+        Connection conn=getConnection();
+        ObservableList<manuftbl> list= FXCollections.observableArrayList();
+        try{
+            PreparedStatement ps=conn.prepareStatement("SELECT * FROM ahd.manufacturer");
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()){
+                list.add(new manuftbl(rs.getInt("manufacturer_id"),rs.getString("FNAME"),rs.getString("address"),rs.getString("EMAIL"),rs.getString("PHONE")));
             }
 
         } catch (Exception e) {
