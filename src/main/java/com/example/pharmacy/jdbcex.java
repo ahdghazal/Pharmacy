@@ -45,4 +45,20 @@ public class jdbcex {
         }
         return list;
     }
+    public static ObservableList<Custtbl>  getustusers()
+    {
+        Connection conn=getConnection();
+        ObservableList<Custtbl> list= FXCollections.observableArrayList();
+        try{
+            PreparedStatement ps=conn.prepareStatement("SELECT * FROM C##dbmanar.custemer");
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()){
+                list.add(new Custtbl(rs.getInt("custemer_id"),rs.getString("FNAME"),rs.getString("MOPILE_PHONE"),rs.getString("EMAIL"),rs.getInt("order_id")));
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
 }

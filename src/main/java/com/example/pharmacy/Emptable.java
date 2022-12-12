@@ -8,7 +8,7 @@ public class Emptable {
     private int shifthours;
     private String empname,empphone,empemail,password;
 
-    public Emptable(int empid,String empname,String empphone,String empemail, int ismanager,int wage,int shifthours, String password){
+    public Emptable(int empid,String empname,String empphone,String empemail, int ismanager,int shifthours,int wage, String password){
         this.empid=empid;
         this.empname=empname;
         this.empphone=empphone;

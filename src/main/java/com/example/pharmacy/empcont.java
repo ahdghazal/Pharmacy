@@ -77,6 +77,7 @@ public class empcont implements Initializable {
     ObservableList<Emptable> listm;
     int index = -1;
     Connection conn =null;
+
     ResultSet rs = null;
     PreparedStatement pst = null;
 
@@ -115,9 +116,12 @@ public class empcont implements Initializable {
 
 
     }
-    public void updateEmployee(){
-        try{
-            conn= jdbcex.getConnection();
+    @FXML
+    public void Edit() {
+
+
+        try {
+            conn = jdbcex.getConnection();
             String v1 = empidtxt.getText();
             String v2 = empnametxt.getText();
             String v3 = empphonetxt.getText();
@@ -126,37 +130,84 @@ public class empcont implements Initializable {
             String v6 = shifttxt.getText();
             String v7 = passtxt.getText();
             String v8 = ismanager.getText();
-
-            String sql = "UPDATE EMPLOYEE SET PERSON_ID="+v1+",FNAME = '"+v2+"',MOPILE_PHONE='"+v3+"', EMAIL='"+v4+"',ISMANAGER ="+v8+",SHIFT_TIME="+v6+",WAGE="
-+v5+",PASSWORD='"+v7+"'";
-            pst= conn.prepareStatement(sql);
+            String sql = "UPDATE AHD.EMPLOYEE SET PERSON_ID="+v1+",FNAME='"+v2+"',MOPILE_PHONE='"+v3+"',EMAIL='"+v4+"',ISMANAGER ="+v8+",SHIFT_TIME="+v6+",WAGE="+v5+",PASSWORD='"+v7+"'";
+            pst = conn.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(null,"Updated!");
-                          }
-        catch (Exception e){
-            JOptionPane.showMessageDialog(null,e);
+            updateEmployee();
+
         }
+        catch (Exception e){
+        e.printStackTrace();
+        }
+    }
+//    public void deleteEmployee(){
+//        conn = jdbcex.getConnection();
+//        String sql1 = "DELETE FROM ahd.employee WHERE EMPLOYEE_ID= '?'";
+//        try {
+//            pst=conn.prepareStatement(sql1);
+//            pst.setString(1,empidtxt.getText());
+//            pst.execute();
+//            JOptionPane.showMessageDialog(null,"Employee Deleted!");
+//            updateEmployee();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+    public void updateEmployee() {
+
+            empid.setCellValueFactory(new PropertyValueFactory<Emptable,Integer>("empid"));
+            wage.setCellValueFactory(new PropertyValueFactory<Emptable,Integer>("wage"));
+            shifthours.setCellValueFactory(new PropertyValueFactory<Emptable,Integer>("shifthours"));
+            ismanager.setCellValueFactory(new PropertyValueFactory<Emptable,Integer>("ismanager"));
+            empname.setCellValueFactory(new PropertyValueFactory<Emptable,String>("empname"));
+            empemail.setCellValueFactory(new PropertyValueFactory<Emptable,String>("empemail"));
+            empphone.setCellValueFactory(new PropertyValueFactory<Emptable,String>("empphone"));
+            password.setCellValueFactory(new PropertyValueFactory<Emptable,String>("password"));
+            listm=jdbcex.getDatausers();
+            emptable.setItems(listm);
+    }
+
+    @FXML
+    void delete(ActionEvent event) {
+        conn = jdbcex.getConnection();
+        String id = empidtxt.getText();
+        System.out.println(id+"");
+        String sql1 = "DELETE FROM employee WHERE person_id='"  +id+ "'";
+        try {
+            pst=conn.prepareStatement(sql1);
+            //pst.setString(1,empidtxt.getText());
+
+            pst.execute();
+            emptable.refresh();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Employee.fxml"));
+            Scene scene2 = new Scene(fxmlLoader.load(), 600, 420);
+            Stage stage2 = new Stage();
+            stage2.setScene(scene2);
+            stage2.show();
+            Stage stage = (Stage) empdelete.getScene().getWindow();
+            stage.close();
+            //updateEmployee();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        empid.setCellValueFactory(new PropertyValueFactory<Emptable,Integer>("empid"));
-        wage.setCellValueFactory(new PropertyValueFactory<Emptable,Integer>("wage"));
-        shifthours.setCellValueFactory(new PropertyValueFactory<Emptable,Integer>("shifthours"));
-        ismanager.setCellValueFactory(new PropertyValueFactory<Emptable,Integer>("ismanager"));
-        empname.setCellValueFactory(new PropertyValueFactory<Emptable,String>("empname"));
-        empemail.setCellValueFactory(new PropertyValueFactory<Emptable,String>("empemail"));
-        empphone.setCellValueFactory(new PropertyValueFactory<Emptable,String>("empphone"));
-        password.setCellValueFactory(new PropertyValueFactory<Emptable,String>("password"));
-        listm=jdbcex.getDatausers();
-        emptable.setItems(listm);
+        updateEmployee();
+
 
         this.emptable.setOnMouseClicked((e) -> {
-            getSelected();
-        });
-        this.empupdate.setOnMouseClicked((e) -> {
-            updateEmployee();
-        });
+            getSelected();    });
+            //this.empdelete.setOnMouseClicked((e) -> {
+
+        //});
+
+
+
     }}
+
 
 
 
